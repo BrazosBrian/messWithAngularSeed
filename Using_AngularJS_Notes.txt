@@ -1,0 +1,16 @@
+Using AngularJS:
+-----------------
+- Make and HTML page and put the 'ng-app' attribute in the HTML tag: <html lang="en" ng-app>
+- Include the angular script at the bottom of the page (before </body>), <script src="angular.min.js"></script>
+- Add a controller to the app (right above the angular inclusion):
+  <script type="text/javascript">
+    function HelloWorldCtrl($scope) {
+	  $scope.helloMessage = "Hello World";
+	}
+  </script>
+- Include the controller attribute in the element that needs it or any element higher than it in the DOM:
+  <h1 ng-controller="HelloWorldCtrl">{{helloMessage}}</h1>
+- Modules in AngularJS allow you to section off your application into major pieces, all in one or separate filters, services,
+  directives, controllers.  A better way to break up the application is to break it up by feature, e.g. a module for each feature (layers)
+  - angular.module('moduleName', ['list', 'of', 'modules']) // 2nd parm is a list of modules that THIS module depends upon
+  - To use a module elsewhere, assign it to a variable: var myModule = angular.module('moduleName',[]);

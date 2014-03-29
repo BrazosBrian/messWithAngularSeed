@@ -1,0 +1,78 @@
+Single-Page Apps (web pages)
+-------------------------------
+- Trend away from pages that require scrolling and 'book-like' interfaces and towards single-screen more 'native app-like' user experiences.
+- Trend is to NOT make server round-trips (post-backs) for HTML (!) ...only for data when necessary (as a result of user interactions).  The ability 
+  to redraw only a part of the UI without requiring a post-back for HTML is important if we want an app-like experience.
+- Doing this with straight Javascript and/or jQuery can result in a lot of complexity and development time (and increase maint. cost)
+- SignalR is a way to allow the server to push data to the client app.
+- AngularJS provides an MVC type environment 
+
+Key words:
+-----------
+Single page app
+Single responsibility principle (and services)
+Routing
+Controllers and mark-up
+MVC
+  Model - the data
+  View - the UI
+  Controller - Might be one of 3 things (and some frameworks let you choose):
+    Controller: Uses business logic to decide WHAT to display (what page, what data).  It returns a view.  <- AngularJS is this
+	Presenter: Controls presentation logic (UI business logic), e.g. how to display the model in a particular page.  It acts as a middle man between model and view.
+	ViewModel: Deals with the junction between model, view, and external services (model is owned by the services and the service is the I/F to the VM and the VM is the I/F to the V).
+Directives (angular js)
+  custom elements
+  observe changes
+  handle events
+Test-driven
+EventReg (an angular event registration site?)
+Angular-Seed
+2-Way Binding
+Routing (UI navigation)
+Testability (Karma is the testing tool for Angular - used to be Testacular. Unit testing and end-to-end testing is supported)
+Web Components (encapsulate HTML, javascript, and CSS) - http://www.w3.org/TR/components-intro
+  5 parts:
+    templates - inert until used
+	decorators - applies templates using CSS to affect visual and behavioral changes to documents
+	custom elements - Lets you define new elements (with new tag names, new script interfaces etc)
+	shadow DOM - Encapsulates a DOM subtree for more reliable composition of UI elements
+	imports - defines how templates, decorators, and custom elements are packaged and loaded as resources
+Dependency Injection (inversion of control - IOC), see http://en.wikipedia.org/wiki/Dependency_Injection and PluralSite course on IOC
+NodeJS web server - See http://nodejs.org 
+
+AngularJS (From Google), http://angularjs.org (see develop/develop guide and api reference)
+------------------------------------------------
+What, Why, and How
+  What and Why: It's a javascript lib.  It's an MV* framework (comp to knockout and backbone). It's opinionated - guides you in a direction and way of solving problems, e.g
+  mod'ing DOM only inside of directives.  The best s/w has a vision and it takes sides (see ruby art. http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php).
+  
+  Angular isolates having to do gets/sets from the server and you work with javascript objects
+  The view is updated from the model and vice versa (2-way binding)
+  Angular handles routing, e.g. navigation resulting from user interaction
+  Angular supports isolated unit test
+  It extends HTML with its own elements and properties, called Directives, which interact with your HTML DOM.
+    This makes HTML more application-oriented rather than document oriented (big paradigm change)
+	Example: <input id="username" type="text" focus />.  The 'focus' attribute makes this text input have focus upon
+	  page load.  HTML5 includes the autofocus attribute that does the same, but only with HTML5-enabled browsers.
+	Example: <multiStateButton id="button1" /> in your HTML (what you type) but the browser will get the full HTML that renders and
+	  handles the button (toggle button or a button with many states etc).
+	Example: <userTile id="userTile1" user="currentUser" />, a custom object that takes a user object and then renders the entire user according to the
+	  custom user viewing preferences that are designed in
+	=> This keeps view logic IN THE VIEW (not in the controller etc)
+  Angular is forward thinking (as evidenced by HTML5 and Web Components, object observation Object.observe see http://wiki.ecmascript.org/doku.php?id=harmony:observe )
+  
+Components of Angular
+---------------------
+- Controller
+  - The central component of an angular app
+  - Contains both logic and state ($scope is for passing data between controller and view)
+- Views/Directives
+  - Bindings and directives
+  - Both 1-way and 2-way bindings
+- Services
+  - They house complex (core) business logic and application state (data)
+  - Services are where you want to communicate with the server
+  
+Controllers
+---------------
+- Primary responsibility is to create the scope (the scope is NOT the model - the scope merely 'contains' the model)
